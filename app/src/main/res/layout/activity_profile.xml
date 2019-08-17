@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/loadingScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation2"
+            android:layout_width="360dp"
+            android:layout_height="323dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="fitCenter">
+
+        </com.airbnb.lottie.LottieAnimationView>
+
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/myProfileFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:visibility="visible">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lifetimeCard"
+            android:layout_width="match_parent"
+            android:layout_height="280px"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            app:cardBackgroundColor="#3F51B5"
+            app:cardCornerRadius="25dp"
+            app:contentPadding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/generalCard">
+
+            <TextView
+                android:id="@+id/lifetimeMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_gravity="bottom|center|left"
+                android:text="MoneyBox:"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/lifetimePlan"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_gravity="center|left"
+                android:text="Plan Value:"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/lifetime"
+                android:layout_width="308dp"
+                android:layout_height="189dp"
+                android:text="Lifetime ISA"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/stocksCard"
+            android:layout_width="match_parent"
+            android:layout_height="280px"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="172dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#009688"
+            app:cardCornerRadius="25dp"
+            app:contentPadding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/Money"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_gravity="bottom|center|left"
+                android:text="MoneyBox:"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:text="Stocks and Shares ISA"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/Plan"
+                android:layout_width="249dp"
+                android:layout_height="29dp"
+                android:layout_gravity="center|left"
+                android:text="Plan Value:"
+                android:textSize="17dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/generalCard"
+            android:layout_width="match_parent"
+            android:layout_height="280px"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            app:cardBackgroundColor="#2196F3"
+            app:cardCornerRadius="25dp"
+            app:contentPadding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stocksCard">
+
+            <TextView
+                android:id="@+id/generalMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_gravity="bottom|center|left"
+                android:text="MoneyBox:"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/generalPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_gravity="center|left"
+                android:text="Plan Value:"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="303dp"
+                android:layout_height="wrap_content"
+                android:text="General Investment"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Hi Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.276"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/useraccounts2" />
+
+        <TextView
+            android:id="@+id/useraccounts2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="My Accounts"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.277"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/moneybox_logo" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -1,7 +1,9 @@
 package com.example.minimoneybox.mvp.Login
 
+import android.content.Context
 import android.content.SharedPreferences
 import com.example.minimoneybox.Activities.mainActivity
+import com.example.minimoneybox.application.App
 import java.util.regex.Pattern
 import com.example.minimoneybox.fragments.LoginActivityFragment.Companion.EMAIL_REGEX
 import com.example.minimoneybox.fragments.LoginActivityFragment.Companion.NAME_REGEX
@@ -29,6 +31,8 @@ class LoginPresenter (mymodelinteractor: ApplicationModelContract): LoginContrac
     }
 
     override fun attach(view: LoginContract.View, context: mainActivity) {
+
+        sharedPref= App.instance.getSharedPreferences("NAME", Context.MODE_PRIVATE)
         this.context=context
 
         this.myView=view
@@ -71,34 +75,38 @@ class LoginPresenter (mymodelinteractor: ApplicationModelContract): LoginContrac
 
     private fun allFieldsValid(): Boolean? {
 
-        var allValid = false
 
         if (Pattern.matches(EMAIL_REGEX, myView.email)) {
 
             if (Pattern.matches(PASSWORD_REGEX, myView.password)) {
 
+                if (myView.name =="") {
+
+                    return true
+                }
                 if (Pattern.matches(NAME_REGEX, myView.name)) {
 
-                    allValid = true
+                   sharedPref.edit().putString("NAME",myView.name).apply()
+                    return true
 
                 } else {
-
                     myView.tilNameError()
-
                 }
+
+
             } else {
                 myView.tilPasswordError()
 
 
             }
-
-        } else {
+        }
+            else {
 
             myView.tilEmailError()
 
         }
 
-        return allValid
+        return false
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.minimoneybox.fragments
 
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -74,6 +76,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     @BindView(R.id.lifetimePlan)lateinit var lplan : TextView
     @BindView(R.id.lifetimeMoney)lateinit var lmoney : TextView
 
+    lateinit var sharedpref: SharedPreferences
 
 
 
@@ -83,6 +86,8 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        sharedpref=App.instance.getSharedPreferences("NAME",Context.MODE_PRIVATE)
 
 
         injectDependencies()
@@ -137,6 +142,13 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     }
 
     override fun setProfileInfo(user: Login_) {
+
+        val myname = sharedpref.getString("NAME","").orEmpty()
+
+        if (myname.isNotEmpty()){
+
+            name.text= "Hi  " + myname
+        }
 
         val listOfProducts = user.productResponses
 

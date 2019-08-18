@@ -1,7 +1,11 @@
 package com.example.minimoneybox.fragments
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.textfield.TextInputLayout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +25,10 @@ import com.example.minimoneybox.application.App
 import com.example.minimoneybox.mvp.Login.LoginContract
 import javax.inject.Inject
 import butterknife.Unbinder
+import com.airbnb.lottie.LottieDrawable
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.airbnb.lottie.value.LottieValueCallback
 import com.example.minimoneybox.Activities.mainActivity
 import com.example.minimoneybox.R
 import com.example.minimoneybox.model.objects.Login_
@@ -48,12 +56,15 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
     @BindView (R.id.animation2)lateinit var pigAnimation : LottieAnimationView
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         injectDependencies()
 
         presenter.attach(this,myActivity)
+
 
 
     }
@@ -102,7 +113,35 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
 
 
     private fun setupAnimation() {
+
+
+
+
+          pigAnimation.addAnimatorUpdateListener { animation ->
+
+              Log.e("Animation",animation.animatedFraction.toString())
+            if (animation.animatedFraction.toDouble()==0.9){
+
+
+
+
+                }
+            }
+
+
+
+
         pigAnimation.playAnimation()
+
+
+
+
+
+
+
+
+
+
     }
 
 

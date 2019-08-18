@@ -39,7 +39,7 @@ class ProfilePresenter (mymodelinteractor: ApplicationModelContract): ProfileCon
 
             myView.setProfileInfo(myUser)
 
-            myView.makeProfileVisible()
+           myView.makeProfileVisible()
         }
 
         realmListener()
@@ -53,7 +53,7 @@ class ProfilePresenter (mymodelinteractor: ApplicationModelContract): ProfileCon
 
 
     override fun detatchView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       myView.makeProfileVisible()
     }
 
 

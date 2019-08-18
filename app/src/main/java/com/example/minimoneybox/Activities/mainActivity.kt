@@ -37,15 +37,14 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
         injectDependency()
 
         _sharedPref= App.instance.getSharedPreferences("Token Store", Context.MODE_PRIVATE)
-
-
         presenter.attach(this,_sharedPref)
+        _sharedPref.registerOnSharedPreferenceChangeListener(this)
 
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
 
-       // presenter.showProfileFragment()
+       showProfileFragment()
 
     }
 
@@ -54,8 +53,8 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun onPause() {
         super.onPause()
-        _sharedPref.unregisterOnSharedPreferenceChangeListener(this)
 
+        _sharedPref.unregisterOnSharedPreferenceChangeListener(this)
         presenter.detatchView()
 
     }
@@ -103,7 +102,7 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun showProfileFragment() {
 
-        Log.e("Error Frag", "im in the frag")
+        Log.e("PROFILE", "Showing profile fragment")
 
         if(supportFragmentManager.findFragmentById(R.id.frame)!=null) {
             supportFragmentManager.beginTransaction()

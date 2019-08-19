@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -27,14 +28,23 @@
 
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/myProfileFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
         tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/planvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:text="Total Plan Value:"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/lifetimeCard"
@@ -46,7 +56,9 @@
             android:clickable="true"
             app:cardBackgroundColor="#3F51B5"
             app:cardCornerRadius="25dp"
-            app:contentPadding="15dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="20dp"
+            app:contentPaddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +94,15 @@
             android:layout_width="match_parent"
             android:layout_height="280px"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="172dp"
+            android:layout_marginTop="230dp"
             android:layout_marginEnd="32dp"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="#009688"
             app:cardCornerRadius="25dp"
-            app:contentPadding="15dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="20dp"
+            app:contentPaddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +118,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="343dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:text="Stocks and Shares ISA"
                 android:textAlignment="center"
@@ -129,7 +143,9 @@
             android:clickable="true"
             app:cardBackgroundColor="#2196F3"
             app:cardCornerRadius="25dp"
-            app:contentPadding="15dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="20dp"
+            app:contentPaddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,11 +180,12 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             android:text="Hi Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.276"
+            app:layout_constraintHorizontal_bias="0.129"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/useraccounts2" />
 
@@ -180,7 +197,7 @@
             android:text="My Accounts"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.277"
+            app:layout_constraintHorizontal_bias="0.155"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

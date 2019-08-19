@@ -63,6 +63,10 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     @BindView(R.id.animation2)lateinit var pigAnimation : LottieAnimationView
     @BindView(R.id.name)lateinit var name : TextView
 
+    //total plan value
+    @BindView(R.id.planvalue)lateinit var totalvalue : TextView
+
+
     //stocks and shares widget
     @BindView(R.id.Plan)lateinit var splan : TextView
     @BindView(R.id.Money)lateinit var smoney : TextView
@@ -75,6 +79,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     //Lifetime ISA
     @BindView(R.id.lifetimePlan)lateinit var lplan : TextView
     @BindView(R.id.lifetimeMoney)lateinit var lmoney : TextView
+
 
     lateinit var sharedpref: SharedPreferences
 
@@ -150,28 +155,43 @@ class ProfileFragment : Fragment(), ProfileContract.View {
             name.text= "Hi  " + myname
         }
 
+
         val listOfProducts = user.productResponses
 
+        var totalplanvalue=0
+
         if (listOfProducts != null) {
+
+
+
             for (myproduct: ProductResponse in listOfProducts) {
+
+
+
 
                 when(myproduct.product?.name)
                 {
-                    "LISA"-> {lplan.text="Plan Value: " + myproduct.planValue.toString()
-                                        lmoney.text="MoneyBox: "+ myproduct.moneybox.toString()
+                    "LISA"-> {lplan.text="Plan Value: £" + myproduct.planValue.toString()
+                                        lmoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
+                                        totalplanvalue += myproduct.planValue?.toInt()!!
                     }
 
                     "GIA"-> {
-                        gplan.text = "Plan Value: " + myproduct.planValue.toString()
-                        gmoney.text="MoneyBox: "+ myproduct.moneybox.toString()
+                        gplan.text = "Plan Value: £" + myproduct.planValue.toString()
+                        gmoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
+                        totalplanvalue += myproduct.planValue?.toInt()!!
                     }
 
-                    "ISA"->{splan.text="Plan Value: "+myproduct.planValue.toString()
-                        smoney.text="MoneyBox: "+ myproduct.moneybox.toString()}
+                    "ISA"->{splan.text="Plan Value: £"+myproduct.planValue.toString()
+                        smoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
+                        totalplanvalue += myproduct.planValue?.toInt()!!
+                    }
 
                 }
 
             }
+
+            totalvalue.text="Total Plan Value: £" +totalplanvalue.toString()
 
             }
         }

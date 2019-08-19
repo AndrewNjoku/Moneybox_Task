@@ -53,7 +53,6 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun onPause() {
         super.onPause()
-
         _sharedPref.unregisterOnSharedPreferenceChangeListener(this)
         presenter.detatchView()
 
@@ -92,10 +91,7 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun showLoginFragment() {
 
-
             supportFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-
                     .replace(com.example.minimoneybox.R.id.frame,LoginActivityFragment().newInstance()).commit()
         }
 
@@ -131,7 +127,6 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun refreshAccountFragment() {
 
-
     }
 
     override fun showGeneralFragment() {
@@ -144,6 +139,25 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
         showAcountFragment("Lisa")
 
     }
+
+    override fun logout() {
+
+        Log.e("LOGOUT", "inside logout")
+
+
+        //realm will be cleared on login
+
+        if(supportFragmentManager.findFragmentById(R.id.frame)!=null) {
+            supportFragmentManager.beginTransaction()
+                    .detach(supportFragmentManager.findFragmentById(R.id.frame)!!).commit()
+        }
+        //clear shared pref which stores the token
+        _sharedPref.edit().clear().apply()
+        showLoginFragment()
+
+
+    }
+
 
 
 

@@ -40,8 +40,6 @@ class AccountFragment : Fragment(), AccountContract.View {
 
     lateinit var myActivity: mainActivity
 
-
-    private lateinit var fragmentComponent: FragmentComponent
     //Inject the presenter
     @Inject
     lateinit var presenter: AccountContract.Presenter
@@ -115,6 +113,12 @@ class AccountFragment : Fragment(), AccountContract.View {
 
         this.myActivity = context as mainActivity
 
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        unbinder?.unbind()
     }
 
 
@@ -233,9 +237,9 @@ class AccountFragment : Fragment(), AccountContract.View {
 
     private fun updateDetailFields(product: ProductResponse) {
 
-        plan.text = "Plan Value: " + product.planValue.toString()
+        plan.text = "Plan Value: £" + product.planValue.toString()
 
-        money.text = "Money Box: " + product.moneybox.toString()
+        money.text = "Money Box: £" + product.moneybox.toString()
 
 
 

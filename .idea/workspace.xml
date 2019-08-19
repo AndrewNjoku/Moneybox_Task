@@ -199,9 +199,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -228,8 +236,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1840">
-              <caret line="88" column="74" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
+            <state relative-caret-position="144">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -237,8 +245,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfilePresenter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1219">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="8">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -246,8 +254,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfileContract.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+            <state relative-caret-position="3">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -255,46 +281,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2300">
-              <caret line="131" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="149">
+              <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="86" column="40" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+            <state relative-caret-position="230">
+              <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="782">
+              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -302,10 +309,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2507">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="190">
+              <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
               <folding>
                 <element signature="e#45#627#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-477">
+              <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+              <folding>
+                <element signature="e#47#255#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -334,8 +353,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Product.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Product.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/productResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/QuickAddDeposits.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/QuickAddDeposits.kt" />
@@ -365,26 +382,28 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/AccountContract.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/AccountPresenter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/ProfilePresenter.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Account/AccountPresenter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Account/AccountContract.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_account_g.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_account_l.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_account_s.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/paymentCallback.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/ApplicationModelContract.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/ApplicationModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfilePresenter.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfileContract.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
       </list>
     </option>
   </component>
@@ -407,6 +426,77 @@
             <path>
               <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="fragments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="Callback" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="mvp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="mvp" type="462c0819:PsiDirectoryNode" />
+              <item name="Activity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="mvp" type="462c0819:PsiDirectoryNode" />
+              <item name="Login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="minimoneybox" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="mvp" type="462c0819:PsiDirectoryNode" />
+              <item name="Profile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Moneybox_Task" type="1abcf292:AndroidViewProjectNode" />
@@ -561,15 +651,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566048213126</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed some layout elements. Have calculated and added the total plan value to the profile fragment.">
+      <created>1566225798382</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1566225798382</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1366" height="706" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4990366" visible="true" weight="0.02276176" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4990366" visible="true" weight="0.314871" />
       <window_info id="Structure" order="2" sideWeight="0.5009634" side_tool="true" weight="0.24279211" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -579,14 +675,14 @@
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="1" weight="0.79052824" />
-      <window_info anchor="bottom" id="Logcat" order="2" sideWeight="0.8050076" weight="0.04347826" />
+      <window_info anchor="bottom" id="Logcat" order="2" sideWeight="0.80424887" visible="true" weight="0.05464481" />
       <window_info anchor="bottom" id="TODO" order="3" />
       <window_info anchor="bottom" id="Android Profiler" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32969034" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.2579666" side_tool="true" visible="true" weight="0.05464481" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.19575115" side_tool="true" visible="true" weight="0.05464481" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Build" order="9" sideWeight="0.74203336" visible="true" weight="0.05464481" />
+      <window_info anchor="bottom" id="Build" order="9" sideWeight="0.74203336" weight="0.9453552" />
       <window_info anchor="bottom" id="Find" order="10" weight="0.9253188" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Gradle" order="1" />
@@ -628,7 +724,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed name validation and persisting name to profile screen." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed name validation and persisting name to profile screen." />
+    <MESSAGE value="Fixed some layout elements. Have calculated and added the total plan value to the profile fragment." />
+    <MESSAGE value="MAde changes to view placement and fixed animation element scaling scaling." />
+    <option name="LAST_COMMIT_MESSAGE" value="MAde changes to view placement and fixed animation element scaling scaling." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/DI/Dagger_App/AppModule.kt">
@@ -813,27 +911,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1495">
-          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-          <folding>
-            <element signature="e#47#255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/BaseContract.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -844,24 +925,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/ApplicationModel.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4554">
-          <caret line="235" selection-start-line="235" selection-end-line="235" />
         </state>
       </provider>
     </entry>
@@ -883,34 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="88" column="74" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfilePresenter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfileContract.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2300">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/example/minimoneybox/fragments/LoginActivityFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
@@ -918,45 +957,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/AccountFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2507">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-          <folding>
-            <element signature="e#45#627#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="392">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="86" column="40" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+          <caret line="101" column="40" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginContract.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
+        <state relative-caret-position="153">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/ProfileFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainContract.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/model/Callback/userCallback.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfilePresenter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Profile/ProfileContract.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Login/LoginPresenter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/Activities/mainActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+          <folding>
+            <element signature="e#45#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/mvp/Activity/MainPresenter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-477">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <folding>
+            <element signature="e#47#255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/minimoneybox/fragments/LoginActivityFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>

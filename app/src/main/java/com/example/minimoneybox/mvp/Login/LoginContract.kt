@@ -17,6 +17,7 @@ interface LoginContract {
         fun gotToProfile()
 
         fun attach(view: View, context: mainActivity)
+
     }
 
     interface View : BaseContract.View, AccountContract.View {

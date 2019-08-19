@@ -61,6 +61,8 @@ class MainPresenter(myContext: Activity): MainContract.Presenter {
         } // as default
         else {
 
+            Log.e("LOGIN", "Showing login fragment")
+
             view.showLoginFragment()
         }
     }

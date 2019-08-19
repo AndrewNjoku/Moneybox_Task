@@ -32,6 +32,7 @@ interface MainContract {
         fun showGeneralFragment()
         fun showLisaFragment()
         fun refreshAccountFragment()
+        fun logout()
 
 
     }

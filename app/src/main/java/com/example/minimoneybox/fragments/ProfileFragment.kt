@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -33,59 +34,40 @@ import javax.inject.Inject
 
 class ProfileFragment : Fragment(), ProfileContract.View {
 
-
-
     private var unbinder: Unbinder? = null
-
-
     //main activity view
-
     lateinit var myActivityView : MainContract.View
-
 
     //Inject the presenter
     @Inject
     lateinit var presenter: ProfileContract.Presenter
-
     //loading screen
     @BindView(R.id.loadingScreen)lateinit var myLoadingScreen : FrameLayout
-
     //profile frame
     @BindView(R.id.myProfileFrame)lateinit var myProfileFrame : ConstraintLayout
-
-
     //cardViews
     @BindView(R.id.lifetimeCard)lateinit var lifetimecard : CardView
     @BindView(R.id.generalCard)lateinit var generalcard : CardView
     @BindView(R.id.stocksCard)lateinit var stockscard : CardView
-
 
     @BindView(R.id.animation2)lateinit var pigAnimation : LottieAnimationView
     @BindView(R.id.name)lateinit var name : TextView
 
     //total plan value
     @BindView(R.id.planvalue)lateinit var totalvalue : TextView
-
-
     //stocks and shares widget
     @BindView(R.id.Plan)lateinit var splan : TextView
     @BindView(R.id.Money)lateinit var smoney : TextView
-
-
     //General investment account
     @BindView(R.id.generalPlan)lateinit var gplan : TextView
     @BindView(R.id.generalMoney)lateinit var gmoney : TextView
-
     //Lifetime ISA
     @BindView(R.id.lifetimePlan)lateinit var lplan : TextView
     @BindView(R.id.lifetimeMoney)lateinit var lmoney : TextView
 
+    @BindView (R.id.btn_sign_out) lateinit var btn_sign_out : Button
 
     lateinit var sharedpref: SharedPreferences
-
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,11 +75,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     ): View? {
 
         sharedpref=App.instance.getSharedPreferences("NAME",Context.MODE_PRIVATE)
-
-
         injectDependencies()
-
-
         presenter.attach(this)
 
         val view = inflater.inflate(R.layout.activity_profile, container, false)
@@ -111,10 +89,22 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         return view
     }
 
+    override fun onAttach(context: Activity) {
+        super.onAttach(context)
+        this.myActivityView=context as mainActivity
+
+    }
+    override fun onDetach() {
+        super.onDetach()
+        makeProfileInvisible()
+        unbinder?.unbind()
+    }
+
     private fun attachListeners() {
         lifetimecard.setOnClickListener(clickListener)
         stockscard.setOnClickListener(clickListener)
         generalcard.setOnClickListener(clickListener)
+        btn_sign_out.setOnClickListener(clickListener)
     }
 
 
@@ -125,6 +115,8 @@ class ProfileFragment : Fragment(), ProfileContract.View {
             generalcard.id -> presenter.activategeneral()
 
             lifetimecard.id -> presenter.activateLisa()
+
+            btn_sign_out.id -> myActivityView.logout()
         }
     }
 
@@ -138,13 +130,6 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     }
 
 
-    override fun onAttach(context: Activity) {
-        super.onAttach(context)
-
-        this.myActivityView=context as mainActivity
-
-
-    }
 
     override fun setProfileInfo(user: Login_) {
 
@@ -175,24 +160,18 @@ class ProfileFragment : Fragment(), ProfileContract.View {
                                         lmoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
                                         totalplanvalue += myproduct.planValue?.toInt()!!
                     }
-
                     "GIA"-> {
                         gplan.text = "Plan Value: £" + myproduct.planValue.toString()
                         gmoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
                         totalplanvalue += myproduct.planValue?.toInt()!!
                     }
-
                     "ISA"->{splan.text="Plan Value: £"+myproduct.planValue.toString()
                         smoney.text="MoneyBox: £"+ myproduct.moneybox.toString()
                         totalplanvalue += myproduct.planValue?.toInt()!!
                     }
-
                 }
-
             }
-
             totalvalue.text="Total Plan Value: £" +totalplanvalue.toString()
-
             }
         }
 
@@ -212,11 +191,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         myProfileFrame.visibility=View.INVISIBLE
     }
 
-    override fun onDetach() {
-        super.onDetach()
 
-        makeProfileInvisible()
-    }
     override fun showStocksScreen() {
 
         myActivityView.showStocksFragment()
@@ -229,14 +204,10 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
         myActivityView.showGeneralFragment()
 
-
     }
 
     override fun showLisaScreen() {
-
-
         myActivityView.showLisaFragment()
-
 
     }
 

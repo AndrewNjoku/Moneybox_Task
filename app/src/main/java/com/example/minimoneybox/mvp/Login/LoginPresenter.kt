@@ -33,6 +33,7 @@ class LoginPresenter (mymodelinteractor: ApplicationModelContract): LoginContrac
     override fun attach(view: LoginContract.View, context: mainActivity) {
 
         sharedPref= App.instance.getSharedPreferences("NAME", Context.MODE_PRIVATE)
+
         this.context=context
 
         this.myView=view
@@ -58,8 +59,6 @@ class LoginPresenter (mymodelinteractor: ApplicationModelContract): LoginContrac
 
 
     override fun validateFields() {
-
-
 
 
         if (allFieldsValid()!!) {

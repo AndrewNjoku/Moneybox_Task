@@ -63,9 +63,8 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
 
         injectDependencies()
 
+
         presenter.attach(this,myActivity)
-
-
 
     }
 
@@ -93,6 +92,13 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
         this.myActivity=context as mainActivity
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+       // unbinder?.unbind()
+    }
+
     override fun onStart() {
         super.onStart()
         setupAnimation()
@@ -109,6 +115,8 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
 
         }
 
+
+
     }
 
 
@@ -116,10 +124,9 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
 
 
 
-
           pigAnimation.addAnimatorUpdateListener { animation ->
 
-              Log.e("Animation",animation.animatedFraction.toString())
+              //Log.e("Animation",animation.animatedFraction.toString())
             if (animation.animatedFraction.toDouble()==0.9){
 
 
@@ -128,19 +135,7 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
                 }
             }
 
-
-
-
         pigAnimation.playAnimation()
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -188,7 +183,6 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
         super.onDestroyView()
 
         unbinder?.unbind()
-
     }
 
     fun newInstance(): LoginActivityFragment {

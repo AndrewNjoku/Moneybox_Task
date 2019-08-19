@@ -96,7 +96,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     }
     override fun onDetach() {
         super.onDetach()
-        makeProfileInvisible()
+        presenter.detatchView()
         unbinder?.unbind()
     }
 

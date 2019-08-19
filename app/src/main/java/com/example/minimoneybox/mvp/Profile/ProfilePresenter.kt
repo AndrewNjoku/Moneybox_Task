@@ -53,7 +53,8 @@ class ProfilePresenter (mymodelinteractor: ApplicationModelContract): ProfileCon
 
 
     override fun detatchView() {
-       myView.makeProfileVisible()
+
+       myView.makeProfileInvisible()
     }
 
 

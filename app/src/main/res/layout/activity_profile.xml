@@ -11,7 +11,7 @@
         android:id="@+id/loadingScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:visibility="invisible">
+        tools:visibility="visible">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation2"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <Button
             android:id="@+id/btn_sign_out"

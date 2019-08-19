@@ -111,6 +111,7 @@ class AccountFragment : Fragment(), AccountContract.View {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+
         this.myActivity = context as mainActivity
 
     }
@@ -240,8 +241,6 @@ class AccountFragment : Fragment(), AccountContract.View {
         plan.text = "Plan Value: £" + product.planValue.toString()
 
         money.text = "Money Box: £" + product.moneybox.toString()
-
-
 
 
     }

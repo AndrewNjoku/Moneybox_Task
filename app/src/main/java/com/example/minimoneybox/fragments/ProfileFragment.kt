@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +43,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     @Inject
     lateinit var presenter: ProfileContract.Presenter
     //loading screen
-    @BindView(R.id.loadingScreen)lateinit var myLoadingScreen : FrameLayout
+   // @BindView(R.id.loadingScreen)lateinit var myLoadingScreen : FrameLayout
     //profile frame
     @BindView(R.id.myProfileFrame)lateinit var myProfileFrame : ConstraintLayout
     //cardViews
@@ -50,7 +51,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     @BindView(R.id.generalCard)lateinit var generalcard : CardView
     @BindView(R.id.stocksCard)lateinit var stockscard : CardView
 
-    @BindView(R.id.animation2)lateinit var pigAnimation : LottieAnimationView
+    //@BindView(R.id.animation2)lateinit var pigAnimation : LottieAnimationView
     @BindView(R.id.name)lateinit var name : TextView
 
     //total plan value
@@ -76,11 +77,16 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
         sharedpref=App.instance.getSharedPreferences("NAME",Context.MODE_PRIVATE)
         injectDependencies()
-        presenter.attach(this)
+
 
         val view = inflater.inflate(R.layout.activity_profile, container, false)
 
         unbinder = ButterKnife.bind(this, view)
+
+        presenter.attach(this)
+
+
+
 
         waitForData()
 
@@ -122,7 +128,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
     private fun waitForData() {
 
-        pigAnimation.playAnimation()
+        //pigAnimation.playAnimation()
     }
 
     private fun injectDependencies() {
@@ -132,6 +138,8 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
 
     override fun setProfileInfo(user: Login_) {
+
+        Log.e("Profile","setting profile info")
 
         val myname = sharedpref.getString("NAME","").orEmpty()
 
@@ -179,16 +187,18 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
     override fun makeProfileVisible() {
 
-        myLoadingScreen.visibility=View.INVISIBLE
+      //  Log.e("PROFILE", "making profile visible")
 
-        myProfileFrame.visibility=View.VISIBLE
+       // myLoadingScreen.visibility=View.INVISIBLE
+
+      //  myProfileFrame.visibility=View.VISIBLE
     }
 
     override fun makeProfileInvisible() {
 
-        myLoadingScreen.visibility=View.VISIBLE
+       // myLoadingScreen.visibility=View.VISIBLE
 
-        myProfileFrame.visibility=View.INVISIBLE
+      //  myProfileFrame.visibility=View.INVISIBLE
     }
 
 

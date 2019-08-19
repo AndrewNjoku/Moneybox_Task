@@ -7,33 +7,12 @@
     android:background="#FFFFFF"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        android:id="@+id/loadingScreen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="visible">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation2"
-            android:layout_width="360dp"
-            android:layout_height="323dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:scaleType="fitCenter">
-
-        </com.airbnb.lottie.LottieAnimationView>
-
-
-    </FrameLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/myProfileFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:visibility="invisible">
+        android:visibility="visible"
+        tools:visibility="visible">
 
         <Button
             android:id="@+id/btn_sign_out"

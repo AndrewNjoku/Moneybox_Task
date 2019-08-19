@@ -14,35 +14,40 @@ class ProfilePresenter (mymodelinteractor: ApplicationModelContract): ProfileCon
 
     //Application context
 
-    lateinit var userinfo:Login_
-
-
-
-    private val modelInteractor = mymodelinteractor
-
-    lateinit var myView: ProfileContract.View
 
     val userRealm = App.instance.getRealm("User")
 
     val user= Realm.getInstance(userRealm)
 
-    val myUser = user.where<Login_>().findFirstAsync()
+    lateinit var userDetails: Login_
+
+
+    lateinit var myView: ProfileContract.View
+
+
 
 
     override fun attach(view: ProfileContract.View) {
 
         Log.e("Profile", "inside profile attach")
-
         this.myView = view
 
-        if(myUser.isValid){
+            user.executeTransaction{
 
-            myView.setProfileInfo(myUser)
+                userDetails = user.where<Login_>().findFirst()!!
 
-           myView.makeProfileVisible()
+                if (userDetails.isValid) {
+
+                myView.setProfileInfo(userDetails)
+
+            }
+                else{
+
+                    Log.e("PROFILE","Realm is empty so cannot udate user details")
+                }
         }
 
-        realmListener()
+
 
         //profile fragment only gets shown on resume if the token is active
         //at the point of attaching the viw presenter will check if user details
@@ -54,32 +59,9 @@ class ProfilePresenter (mymodelinteractor: ApplicationModelContract): ProfileCon
 
     override fun detatchView() {
 
-       myView.makeProfileInvisible()
     }
 
 
-
-      fun realmListener() {
-
-
-          Log.e("REALM","Inside realm listener profile")
-
-        userinfo = user.where<Login_>().findFirstAsync()
-
-        userinfo.addChangeListener(RealmChangeListener<Login_>{
-
-
-            user-> if(userinfo.isValid()) myView.setProfileInfo(user).also { myView.makeProfileVisible() }
-
-
-            //The elements the presenter will update are in a frame that is currently invisible
-            //once the change listener returns the user obect then we can populate this invisible view
-            //and make it invisible
-
-
-
-        })
-    }
     override fun activateStocks() {
         myView.showStocksScreen()
     }

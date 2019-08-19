@@ -20,18 +20,11 @@ class userCallback internal constructor() : DisposableSingleObserver<Login_>() {
 
             //clear realm
 
-            if (!realm.isEmpty)
-            {
-
-                realm.deleteAll()
-            }
+            Log.e("REALM", "copying to realm in async")
 
             realm.copyToRealm(t)
 
-            for(product: ProductResponse in t.productResponses!!)
-            {
-                Log.e("Details", product.product?.name)
-            }
+
 
         }
 

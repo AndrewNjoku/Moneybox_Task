@@ -12,14 +12,13 @@ import com.example.minimoneybox.fragments.AccountFragment
 import com.example.minimoneybox.fragments.LoginActivityFragment
 import com.example.minimoneybox.fragments.ProfileFragment
 import com.example.minimoneybox.mvp.Activity.MainContract
+import io.realm.Realm
+
 
 import javax.inject.Inject
 
 
-
-
-
-class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.OnSharedPreferenceChangeListener {
+class mainActivity : AppCompatActivity(), MainContract.View{
 
 
     @Inject
@@ -27,7 +26,7 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     lateinit var _sharedPref: SharedPreferences
 
-    lateinit var listener: SharedPreferences.OnSharedPreferenceChangeListener
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,27 +34,17 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         injectDependency()
-
         _sharedPref= App.instance.getSharedPreferences("Token Store", Context.MODE_PRIVATE)
         presenter.attach(this,_sharedPref)
-        _sharedPref.registerOnSharedPreferenceChangeListener(this)
+
 
     }
-
-    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-
-       showProfileFragment()
-
-    }
-
 
 
 
     override fun onPause() {
         super.onPause()
-        _sharedPref.unregisterOnSharedPreferenceChangeListener(this)
         presenter.detatchView()
-
     }
 
 
@@ -63,10 +52,14 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
         Log.e("ERROR","In onResume")
         super.onResume()
-        _sharedPref.registerOnSharedPreferenceChangeListener(this)
         presenter.attach(this,_sharedPref)
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+         }
 
     private fun injectDependency() {
 
@@ -75,7 +68,6 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
                 .inject(this)
 
     }
-
     override fun onBackPressed() {
 
         val count = supportFragmentManager.backStackEntryCount
@@ -91,31 +83,67 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
 
     override fun showLoginFragment() {
 
+        //reactivate realm listener
+        presenter.realmListener()
+
             supportFragmentManager.beginTransaction()
-                    .replace(com.example.minimoneybox.R.id.frame,LoginActivityFragment().newInstance()).commit()
+                    .replace(R.id.frame,LoginActivityFragment().newInstance())
+                    .commit()
         }
+
 
 
     override fun showProfileFragment() {
 
-        Log.e("PROFILE", "Showing profile fragment")
 
-        if(supportFragmentManager.findFragmentById(R.id.frame)!=null) {
+        val fragment = supportFragmentManager.findFragmentByTag("profile")
+
+        if (fragment !=null){
+
             supportFragmentManager.beginTransaction()
-                    .detach(supportFragmentManager.findFragmentById(R.id.frame)!!).commit()
+                    .replace(R.id.frame,fragment).commit()
         }
+        else {
+            //detatch login fragment we dont need to add to stack
+            if (supportFragmentManager.findFragmentById(R.id.frame) != null) {
+                supportFragmentManager.beginTransaction()
+                        .detach(supportFragmentManager.findFragmentById(R.id.frame)!!).commit()
+            }
 
+            //brand new profile we save to backstack for later
             supportFragmentManager.beginTransaction()
-                    .addToBackStack(null).replace(R.id.frame, ProfileFragment().newInstance()).commit()
+                    .addToBackStack("profile")
+                    .replace(R.id.frame, ProfileFragment()
+                            .newInstance())
+                            .commit()
 
+        }
     }
 
 
     override fun showAcountFragment(accounttype: String) {
 
+        val fragment = supportFragmentManager.findFragmentByTag(accounttype)
+
+        if (fragment !=null) {
 
             supportFragmentManager.beginTransaction()
-                    .addToBackStack(null).replace(R.id.frame, AccountFragment().newInstance(accounttype)).commit()
+                    .replace(R.id.frame, fragment).commit()
+        }
+
+                    else{
+
+            val accountinstance = AccountFragment().newInstance(accounttype)
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.frame,accountinstance)
+                    .addToBackStack(accounttype)
+                    .commit()
+
+            }
+
+
+
+
 
 
     }
@@ -153,6 +181,11 @@ class mainActivity : AppCompatActivity(), MainContract.View, SharedPreferences.O
         }
         //clear shared pref which stores the token
         _sharedPref.edit().clear().apply()
+
+        //clear realm
+
+        val myRealm = App.instance.getRealm("User")
+        Realm.getInstance(myRealm).executeTransaction { realm -> realm.deleteAll() }
         showLoginFragment()
 
 

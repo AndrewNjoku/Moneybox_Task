@@ -40,7 +40,7 @@ class ApplicationModel (myService: MoneyBoxAPI): ApplicationModelContract {
 
         mySharedPreferences=App.instance.getSharedPreferences("Token Store", Context.MODE_PRIVATE)
 
-        mySharedPreferences.edit().clear().apply()
+        //mySharedPreferences.edit().clear().apply()
 
         this.myActivityView=activity
 
@@ -62,7 +62,7 @@ class ApplicationModel (myService: MoneyBoxAPI): ApplicationModelContract {
                         .getAccountInfo("Bearer "+result.session?.bearerToken.toString()).also { e("Error with Token",result.session?.bearerToken) }
                         .also { mySharedPreferences.edit().putString("BEARER_TOKEN", result.session?.bearerToken.toString()).apply() }
                         .also { mySharedPreferences.edit().putLong("TIME",System.currentTimeMillis()).apply() }}
-                .observeOn(AndroidSchedulers.mainThread()).doFinally { searchDisposable?.dispose() }.also { myActivityView.showProfileFragment() }
+                .observeOn(AndroidSchedulers.mainThread()).doFinally { searchDisposable?.dispose() }
                 .subscribeWith(userCallback())
 
         e("ERROR","after network call")

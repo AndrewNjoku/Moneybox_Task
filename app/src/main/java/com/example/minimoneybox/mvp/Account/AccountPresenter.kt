@@ -21,8 +21,6 @@ class AccountPresenter (mymodelinteractor: ApplicationModelContract): AccountCon
 
     lateinit var myActivity:MainContract.View
 
-
-
     private val modelInteractor = mymodelinteractor
 
     lateinit var myView: AccountContract.View
@@ -41,7 +39,6 @@ class AccountPresenter (mymodelinteractor: ApplicationModelContract): AccountCon
 
     override fun attach(view: AccountContract.View, myActivity: mainActivity, accountType: String) {
         this.myView = view
-
         this.myActivity=myActivity
 
         this.type=accountType

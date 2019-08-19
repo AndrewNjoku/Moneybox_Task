@@ -18,6 +18,7 @@ interface MainContract {
 
         fun attach(view: View, _sharedPref: SharedPreferences)
 
+        fun realmListener()
     }
 
     interface View : BaseContract.View {
@@ -33,7 +34,6 @@ interface MainContract {
         fun showLisaFragment()
         fun refreshAccountFragment()
         fun logout()
-
 
     }
 }

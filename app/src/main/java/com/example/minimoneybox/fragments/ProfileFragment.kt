@@ -204,6 +204,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
     override fun showStocksScreen() {
 
+
         myActivityView.showStocksFragment()
 
 

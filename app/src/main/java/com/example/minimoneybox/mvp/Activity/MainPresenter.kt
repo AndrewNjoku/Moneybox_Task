@@ -1,33 +1,29 @@
 package com.example.minimoneybox.mvp.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.minimoneybox.Activities.mainActivity
 import com.example.minimoneybox.application.App
 import com.example.minimoneybox.model.objects.Login_
 import com.example.minimoneybox.mvp.Activity.MainContract.*
 import io.realm.Realm
 import io.realm.RealmChangeListener
-import io.realm.RealmObject.removeAllChangeListeners
+import io.realm.RealmObject.*
 import io.realm.kotlin.where
 
+class MainPresenter(myContext: Activity): MainContract.Presenter,SharedPreferences.OnSharedPreferenceChangeListener ,RealmChangeListener<Realm>{
 
-class MainPresenter(myContext: Activity): MainContract.Presenter,SharedPreferences.OnSharedPreferenceChangeListener {
+    val myRealm = App.instance.getRealm("User")
 
-
-    val userRealm = App.instance.getRealm("User")
-
-    val user = Realm.getInstance(userRealm)
-
-    val myUser = user.where<Login_>().findFirstAsync()
-
+    val realm = Realm.getInstance(myRealm)
 
     override fun attach(view: View) {
 
     }
-
-    private val context = myContext as mainActivity
 
     var currentTime: Long = 0
 
@@ -56,9 +52,9 @@ class MainPresenter(myContext: Activity): MainContract.Presenter,SharedPreferenc
         Log.e("CHECK", "Inside attach")
         this.sharedPref = _sharedPref
         this.view = view
-        realmListener()
         sharedPref.registerOnSharedPreferenceChangeListener(this)
         //if the user has a bearer token that is active (5 mins)
+
 
         //This is a check when the presenter is created and the view is attached, meaning
 
@@ -68,35 +64,44 @@ class MainPresenter(myContext: Activity): MainContract.Presenter,SharedPreferenc
 
         } // as default
         else {
+                //ive added change listener after clearing realm , which essentially means the user has resumed the app and is no longer logged in
+                //based on the bearer token, in this case we actvate the listener after this transaction so the realmchangelistener does not get activated
+                Log.e("LOGIN", "Showing login fragment")
+                view.showLoginFragment()
+
 
         }
-        val myRealm = App.instance.getRealm("User")
+    }
 
-        Realm.getInstance(myRealm).executeTransaction { realm ->
-            realm.deleteAll()
+    override fun onChange(t: Realm) {
 
-            Log.e("LOGIN", "Showing login fragment")
+        Log.e("REALM","in profile on change")
+        //onChange from the login call once the data has been retrofitted we want to show the profile fragment which
+        //will automatically update the profile details on attach
+        view.showProfileFragment()
 
-            view.showLoginFragment()
-        }
+        realm.removeChangeListener(this)
+    }
+
+    override fun registerRealmListener(){
+
+        realm.addChangeListener(this)
+
     }
 
 
     override fun detatchView() {
-
         sharedPref.unregisterOnSharedPreferenceChangeListener(this)
-
-
+        realm.removeChangeListener(this)
+        // user.removeAllChangeListeners()
     }
 
 
     override fun showProfileFragment() {
-
         view.showProfileFragment()
     }
 
     override fun checkifTokenActive(): Boolean {
-
         //Get the current time
         currentTime = System.currentTimeMillis()
 
@@ -116,29 +121,24 @@ class MainPresenter(myContext: Activity): MainContract.Presenter,SharedPreferenc
 
     }
 
-    override fun realmListener() {
-
-        user.addChangeListener {
-
-            realm -> if (!realm.isEmpty) view.showProfileFragment().also { user.removeAllChangeListeners() }
-        }
-        //and make it invisible
-    }
-
-
-
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
         Log.e("SHARED_PREFERENCES", "inside shared preferences listener")
-        if (p1=="BEARER_TOKEN") {
+        if (p1 == "BEARER_TOKEN") {
 
             Log.e("SHARED_PREFERENCES", "Token store changed")
             // showProfileFragment()
         }
+
+        if (p1 =="ACCOUNT_REFRESH"){
+            view.refreshCurrentFragment()
+        }
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+

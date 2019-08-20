@@ -10,10 +10,8 @@ interface AccountContract {
     interface Presenter: BaseContract.Presenter<View> {
         fun makePayment(i: Int, accountType: Int)
 
-
         fun attach(view: View, myActivity: mainActivity, accountType: String)
-
-
+        fun registerRealmListener()
 
 
     }
@@ -23,7 +21,6 @@ interface AccountContract {
 
         fun updateAccountInfo(user: Login_)
 
-        fun refreshAccountFragment()
 
 
     }

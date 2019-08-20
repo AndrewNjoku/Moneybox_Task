@@ -1,13 +1,13 @@
 package com.example.minimoneybox.mvp.Activity
 
 import android.content.SharedPreferences
+import com.example.minimoneybox.model.objects.Login_
 import com.example.minimoneybox.mvp.BaseContract
 
 
 interface MainContract {
 
     interface Presenter: BaseContract.Presenter<View> {
-
 
         //check if logged in on the mainActivity
         fun loggedIn():Boolean
@@ -18,7 +18,7 @@ interface MainContract {
 
         fun attach(view: View, _sharedPref: SharedPreferences)
 
-        fun realmListener()
+        fun registerRealmListener()
     }
 
     interface View : BaseContract.View {
@@ -32,8 +32,13 @@ interface MainContract {
         fun showStocksFragment()
         fun showGeneralFragment()
         fun showLisaFragment()
-        fun refreshAccountFragment()
+
         fun logout()
+        fun reattachRealmListener()
+        fun refreshCurrentFragment()
+        fun showPaymentSuccessToast()
+        fun showPaymentFailToast()
+
 
     }
 }

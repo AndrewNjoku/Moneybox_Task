@@ -2,8 +2,10 @@ package com.example.minimoneybox.Activities
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minimoneybox.DI.Dagger_Activity.ActivityModule
 import com.example.minimoneybox.R
@@ -11,6 +13,7 @@ import com.example.minimoneybox.application.App
 import com.example.minimoneybox.fragments.AccountFragment
 import com.example.minimoneybox.fragments.LoginActivityFragment
 import com.example.minimoneybox.fragments.ProfileFragment
+import com.example.minimoneybox.model.objects.Login_
 import com.example.minimoneybox.mvp.Activity.MainContract
 import io.realm.Realm
 
@@ -25,6 +28,8 @@ class mainActivity : AppCompatActivity(), MainContract.View{
     lateinit var presenter : MainContract.Presenter
 
     lateinit var _sharedPref: SharedPreferences
+
+    var accoutFragType="Lisa"
 
 
 
@@ -83,12 +88,13 @@ class mainActivity : AppCompatActivity(), MainContract.View{
 
     override fun showLoginFragment() {
 
-        //reactivate realm listener
-        presenter.realmListener()
+        Log.e("LOGIN", "created login fragment")
 
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame,LoginActivityFragment().newInstance())
+                    .replace(R.id.frame,LoginActivityFragment().newInstance(),"login")
                     .commit()
+        presenter.registerRealmListener()
+
         }
 
 
@@ -96,77 +102,74 @@ class mainActivity : AppCompatActivity(), MainContract.View{
     override fun showProfileFragment() {
 
 
-        val fragment = supportFragmentManager.findFragmentByTag("profile")
-
-        if (fragment !=null){
-
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame,fragment).commit()
-        }
-        else {
-            //detatch login fragment we dont need to add to stack
-            if (supportFragmentManager.findFragmentById(R.id.frame) != null) {
                 supportFragmentManager.beginTransaction()
-                        .detach(supportFragmentManager.findFragmentById(R.id.frame)!!).commit()
-            }
+                        .detach(supportFragmentManager
+                                .findFragmentById(R.id.frame)!!)
+                                .commit()
 
             //brand new profile we save to backstack for later
             supportFragmentManager.beginTransaction()
-                    .addToBackStack("profile")
                     .replace(R.id.frame, ProfileFragment()
-                            .newInstance())
+                            .newInstance(),"profile")
                             .commit()
 
         }
-    }
+
 
 
     override fun showAcountFragment(accounttype: String) {
 
-        val fragment = supportFragmentManager.findFragmentByTag(accounttype)
+        Log.e("ACCOUNT", "Showing account fragment")
 
-        if (fragment !=null) {
-
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame, fragment).commit()
-        }
-
-                    else{
+        supportFragmentManager.beginTransaction()
+                .detach(supportFragmentManager
+                        .findFragmentById(R.id.frame)!!)
+                        .commit()
 
             val accountinstance = AccountFragment().newInstance(accounttype)
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame,accountinstance)
-                    .addToBackStack(accounttype)
+                    .replace(R.id.frame, accountinstance,accounttype)
                     .commit()
-
-            }
-
+        }
 
 
 
 
 
+
+    override fun reattachRealmListener() {
+       // presenter.realmListener()
     }
+
+
     override fun showStocksFragment() {
 
         showAcountFragment("Stocks")
-
-    }
-
-    override fun refreshAccountFragment() {
+        this.accoutFragType="Stocks"
 
     }
 
     override fun showGeneralFragment() {
 
         showAcountFragment("General")
+        this.accoutFragType="General"
 
     }
 
     override fun showLisaFragment() {
         showAcountFragment("Lisa")
+        this.accoutFragType="Lisa"
 
     }
+
+    override fun refreshCurrentFragment() {
+
+        Log.e("REFRESH", "refreshing account frag")
+
+        showAcountFragment(accoutFragType)
+
+    }
+
 
     override fun logout() {
 
@@ -177,7 +180,8 @@ class mainActivity : AppCompatActivity(), MainContract.View{
 
         if(supportFragmentManager.findFragmentById(R.id.frame)!=null) {
             supportFragmentManager.beginTransaction()
-                    .detach(supportFragmentManager.findFragmentById(R.id.frame)!!).commit()
+                    .detach(supportFragmentManager
+                            .findFragmentById(R.id.frame)!!).commit()
         }
         //clear shared pref which stores the token
         _sharedPref.edit().clear().apply()
@@ -192,8 +196,19 @@ class mainActivity : AppCompatActivity(), MainContract.View{
     }
 
 
+    fun verifyAvailableNetwork():Boolean{
+        val connectivityManager=this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo=connectivityManager.activeNetworkInfo
+        return  networkInfo!=null && networkInfo.isConnected
+    }
 
+    override fun showPaymentSuccessToast() {
+        Toast.makeText(this,"Payment Successfull!",Toast.LENGTH_SHORT).show()
+    }
 
+    override fun showPaymentFailToast() {
+        Toast.makeText(this,"Payment Unsuccessfull, Try again",Toast.LENGTH_SHORT).show()
+    }
 
 
 

@@ -21,9 +21,6 @@ import io.realm.RealmConfiguration
 
 class ApplicationModel (myService: MoneyBoxAPI): ApplicationModelContract {
 
-
-    private lateinit var type: String
-
     private lateinit var myActivityView: MainContract.View
 
     private lateinit var myRealm : RealmConfiguration
@@ -34,39 +31,31 @@ class ApplicationModel (myService: MoneyBoxAPI): ApplicationModelContract {
 
     private var searchDisposable: Disposable? = null
 
+    val realm = Realm.getInstance(App.instance.getRealm("User")!!)
 
     override fun setUserLoginAccessToken(username: String, password: String ,context: LoginContract.Presenter, activity:mainActivity) {
-
 
         mySharedPreferences=App.instance.getSharedPreferences("Token Store", Context.MODE_PRIVATE)
 
         //mySharedPreferences.edit().clear().apply()
-
         this.myActivityView=activity
-
-        //make a call to receive bearer token and store it in shared preferences
-
-        //myCallbackLoginCallback= LoginCallback()
         val login = Login()
-
         login.email=username
         login.password=password
         login.idfa="ANYTHING"
 
-        e("Unane",username)
-        e("Password",password)
-
-
         searchDisposable= service.Login(login)
                 .subscribeOn(Schedulers.io()).flatMap { result -> service
-                        .getAccountInfo("Bearer "+result.session?.bearerToken.toString()).also { e("Error with Token",result.session?.bearerToken) }
+                        .getAccountInfo("Bearer "+result.session?.bearerToken.toString())
+                        .subscribeOn(Schedulers.io()).also { e("Token",result.session?.bearerToken) }
                         .also { mySharedPreferences.edit().putString("BEARER_TOKEN", result.session?.bearerToken.toString()).apply() }
                         .also { mySharedPreferences.edit().putLong("TIME",System.currentTimeMillis()).apply() }}
                 .observeOn(AndroidSchedulers.mainThread()).doFinally { searchDisposable?.dispose() }
                 .subscribeWith(userCallback())
 
-        e("ERROR","after network call")
 
+
+        e("ERROR","after network call")
 
 
     }
@@ -79,35 +68,29 @@ class ApplicationModel (myService: MoneyBoxAPI): ApplicationModelContract {
         Realm.getInstance(App.instance.getRealm("User")).executeTransactionAsync { realm -> realm.deleteAll() }
 
         val myToken = "Bearer "+mySharedPreferences.getString("BEARER_TOKEN","")
-
-        e("MYTOKEN",myToken)
-
         searchDisposable=
-        service.getAccountInfo(myToken).subscribeOn(Schedulers.io())
-    .observeOn(AndroidSchedulers.mainThread()).doFinally { searchDisposable?.dispose() }.also { }
-    .subscribeWith(userCallback())
+        service.getAccountInfo(myToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).doFinally { searchDisposable?.dispose() }
+                .subscribeWith(userCallback())
     }
 
 
 
     override fun makePaymentIntoAccount(ammount: Int, accountid: Int) {
-
         mySharedPreferences=App.instance.getSharedPreferences("Token Store", Context.MODE_PRIVATE)
 
         val myToken = "Bearer "+mySharedPreferences.getString("BEARER_TOKEN","")
-
 
         val payment = Payment()
         payment.Amount= ammount
         payment.InvestorProductId= accountid
 
-
         service.OneOffPayment(myToken,payment)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete { updateDetailsOnChange() }
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(paymentCallback())
-
-
+                .subscribe(paymentCallback(myActivityView))
 
 
     }

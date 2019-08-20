@@ -111,7 +111,14 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
         //Now this method is responsible for configuring view listeners.
         btn_sign_in.setOnClickListener {
 
-            presenter.validateFields()
+
+            if(myActivity.verifyAvailableNetwork())
+            {
+                presenter.validateFields()}
+            else {
+                Toast.makeText(myActivity,"please check your internet connection",Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
@@ -197,9 +204,7 @@ class LoginActivityFragment : Fragment(), LoginContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun refreshAccountFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
     companion object {
         const val EMAIL_REGEX = "[^@]+@[^.]+\\..+"
         const val NAME_REGEX = "[a-zA-Z]{6,30}"

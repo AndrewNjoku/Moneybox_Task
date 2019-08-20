@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.Unbinder
@@ -22,10 +23,16 @@ import com.example.minimoneybox.model.objects.Login_
 import com.example.minimoneybox.model.objects.ProductResponse
 import com.example.minimoneybox.mvp.Account.AccountContract
 import io.realm.Realm
+import io.realm.RealmChangeListener
 import io.realm.kotlin.isLoaded
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_account_g.*
 import javax.inject.Inject
+
+
+
+
+
 
 
 class AccountFragment : Fragment(), AccountContract.View {
@@ -33,6 +40,10 @@ class AccountFragment : Fragment(), AccountContract.View {
     val myRealm = App.instance.getRealm("User")
 
     val realm = Realm.getInstance(myRealm)
+
+    //realmObject
+
+    val myUserRealmObject = realm.where<Login_>().findFirstAsync()
 
     private var unbinder: Unbinder? = null
 
@@ -51,6 +62,7 @@ class AccountFragment : Fragment(), AccountContract.View {
     lateinit var money: TextView
 
     lateinit var accountType: String
+
 
     //buttons
     @BindView(R.id.five)
@@ -94,9 +106,10 @@ class AccountFragment : Fragment(), AccountContract.View {
 
         injectDependencies()
 
+        setupListeners()
+
         presenter.attach(this, myActivity, accountType)
 
-        setupListeners()
 
         Log.e("id", accountId.toString())
 
@@ -110,9 +123,12 @@ class AccountFragment : Fragment(), AccountContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
-
         this.myActivity = context as mainActivity
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
     }
 
@@ -124,31 +140,44 @@ class AccountFragment : Fragment(), AccountContract.View {
 
 
     private val clickListener: View.OnClickListener = View.OnClickListener { view ->
+
         when (view.id) {
 
-            button.id-> { myActivity.showProfileFragment()}
+            button.id -> {
+                myActivity.showProfileFragment()
+            }}
+        if(myActivity.verifyAvailableNetwork()) {
+
+            when (view.id) {
+
+                button.id -> {
+                    myActivity.showProfileFragment()
+                }
 
 
-            five.id -> {
-                presenter.makePayment(5, accountId)
+                five.id -> {
+                    presenter.makePayment(5, accountId)
 
-                myActivity.showAcountFragment(accountType)
+                }
+
+                ten.id -> {
+                    presenter.makePayment(10, accountId)
+
+
+                }
+
+                fifteen.id -> {
+                    presenter.makePayment(15, accountId)
+
+
+
+                }
+
             }
+        }
+        else{
 
-            ten.id -> {
-                presenter.makePayment(10, accountId)
-                myActivity.showAcountFragment(accountType)
-
-
-            }
-
-            fifteen.id -> {
-                presenter.makePayment(15, accountId)
-                myActivity.showAcountFragment(accountType)
-
-
-            }
-
+            Toast.makeText(myActivity,"Please check your network connection",Toast.LENGTH_SHORT).show()
         }
 
 
@@ -162,76 +191,79 @@ class AccountFragment : Fragment(), AccountContract.View {
 
     }
 
-    override fun refreshAccountFragment() {
-
-        myActivity.refreshAccountFragment()
-
-
-    }
-
 
     override fun updateDetails() {
 
-        var myUser: Login_
 
         when (accountType) {
 
             "Stocks" -> {
-                realm.executeTransactionAsync { realm ->
-                    myUser = realm
-                            .where<Login_>().findFirst().also { container ->
-                                for (product: ProductResponse in container?.productResponses!!) {
-                                    if (product.product?.name == "ISA") {
-                                        updateDetailFields(product)
-                                        //set the account id
-                                        accountId = product.id!!
 
-                                        Log.e("id", accountId.toString())
+                realm.executeTransactionAsync({ bgRealm ->
+                    bgRealm.where<Login_>().findFirst()?.also { container ->
+                        for (product: ProductResponse in container.productResponses!!) {
+                            if (product.product?.name == "ISA") {
+                                updateDetailFields(product)
+                                accountId = product.id!!
+                                Log.e("id", accountId.toString())
+                                Log.e("ASYNC", "failure in transaction not registering listener")
+                            }
+                        }
+                    }
 
-                                        Log.e("ASYNC", "Inside realm setting product stocks")
-                                        Log.e("Product", product.product?.name)
-                                    }
-                                }
-                            }!!
-                }
+                }, {
+                    Log.e("SUCCESS","success registering listener")
+                    presenter.registerRealmListener()
+                }, {
+                    Log.e("Failure","failure in transaction not registering listener")
+                    // Transaction failed and was automatically canceled.
+                })
+
             }
             "Lisa" -> {
-                realm.executeTransactionAsync { realm ->
-                    myUser = realm
-                            .where<Login_>().findFirst().also { container ->
-                                for (product: ProductResponse in container?.productResponses!!) {
-                                    if (product.product?.name == "LISA") {
-                                        updateDetailFields(product)
-                                        accountId = product.id!!
-                                        Log.e("id", accountId.toString())
-                                        Log.e("ASYNC", "Inside realm setting product LISA")
-                                    }
-                                }
-                            }!!
-                }
+
+                realm.executeTransactionAsync({ bgRealm ->
+                    bgRealm.where<Login_>().findFirst()?.also { container ->
+                        for (product: ProductResponse in container.productResponses!!) {
+                            if (product.product?.name == "LISA") {
+                                updateDetailFields(product)
+                                accountId = product.id!!
+                                Log.e("id", accountId.toString())
+                                Log.e("ASYNC", "failure in transaction not registering listener")
+                            }
+                        }
+                    }
+
+                }, {
+                    Log.e("SUCCESS","success registering listener")
+                    presenter.registerRealmListener()
+                }, {
+                    Log.e("Failure","failure in transaction not registering listener")
+                })
+
             }
             "General" -> {
-                realm.executeTransactionAsync { realm ->
-                    myUser = realm
-                            .where<Login_>().findFirst()?.also { container ->
-                                for (product: ProductResponse in container.productResponses!!) {
-                                    if (product.product?.name == "GIA") {
-                                        updateDetailFields(product)
-                                        accountId = product.id!!
-                                        Log.e("id", accountId.toString())
-                                        Log.e("ASYNC", "Inside realm setting product General")
-                                    }
-                                }
-                            }!!
-                }
+
+                realm.executeTransactionAsync({ bgRealm ->
+                    bgRealm.where<Login_>().findFirst()?.also { container ->
+                        for (product: ProductResponse in container.productResponses!!) {
+                            if (product.product?.name == "GIA") {
+                                updateDetailFields(product)
+                                accountId = product.id!!
+                                Log.e("id", accountId.toString())
+                                Log.e("ASYNC", "Inside realm setting product General")
+                            }
+                        }
+                    }
+
+                }, {
+                    Log.e("SUCCESS","success registering listener")
+                    presenter.registerRealmListener()
+                }, {
+                    Log.e("Failure","success registering listener")
+                })
 
             }
-            else -> { // Note the block
-
-                Log.e("Error", "Inside else of when block")
-            }
-
-
         }
     }
 
@@ -242,6 +274,10 @@ class AccountFragment : Fragment(), AccountContract.View {
 
         money.text = "Money Box: £" + product.moneybox.toString()
 
+        //After initial update register realm listener so when realm is updated
+        //from making a payment into the account the fragment will be reloaded
+        //listener will be detatched and the update will happen again
+        presenter.registerRealmListener()
 
     }
 

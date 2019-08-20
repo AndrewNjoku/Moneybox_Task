@@ -53,8 +53,6 @@ class LoginPresenter (mymodelinteractor: ApplicationModelContract): LoginContrac
         modelInteractor.setUserLoginAccessToken(userName,passWord,this,context)
                 //.findUser(myService,userName,passWord,name,my)
 
-
-
     }
 
 

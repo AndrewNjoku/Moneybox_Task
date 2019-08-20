@@ -34,6 +34,7 @@ class App : Application(){
                 .name("Lisa Realm")
                 .schemaVersion(0)
                 .deleteRealmIfMigrationNeeded()
+                .inMemory()
                 .build()
         Realm.setDefaultConfiguration(realmConfigurationUser)
     }

@@ -4,7 +4,6 @@ Create a mini version of the Moneybox app that will allow existing users to logi
 
 ## Part A - Fix current bugs
 
-
 ### Bug 1 - Layout does not look as expected
 
 Solution: The right image 
@@ -36,36 +35,54 @@ Above the login button is an animation of an owl and a pig.  We would like this 
 ![](/images/secondpig.gif)
 
 
-## Part B - Add 2 new screens
+## Part B - Add 2 new screens 
+
+## Project Breakdown
 
 ![](/images/wireframe.png)
 
 This Project architecture:
--Dagger 2 (DI)
--Retrofit (REST)
--ButterKnife (View Binding)
--RXKotlin (reactive)
--Realm (Local Database/Caching)
+
+- Dagger 2 (DI)
+
+- Retrofit (REST)
+
+- Butterknife (View Binding)
+
+- RXKotlin (Reactive)
+
+- Realm (Local Database/ Caching)
+
+### Dependency Injection
 
 I have used Dagger 2 to inject my presenters with the neccesserry singleton objects needed for making my network calls and working with the data returned. I have injected these presenters into the main activity for controlling fragment logic and my three fragments for controlling login/Account functionality.
 
 I decided to keep the application to one activity with a fragment for each screen based on the relative simplistic functionality. This has enabled m to create a very fast and responsive application.
 
-There are three dagger components: App, Activity and Fragment. The application component provides its same name module which contains a stack of @provides annotated methods culminating in an applicationModel instance which is my interactor for interfacing with my data. this interactor is injected with an API interface which contains all of my Retrofit RESTfull methods to make calls to the moneybox API. Retrofit will serialise the returned JSON to an object using GSON, and the reverse is carried out for making a payment in the Accounts screen.
+There are three dagger components: App, Activity and Fragment. The application component provides its same name module which contains a stack of @provides annotated methods culminating in an applicationModel instance which is my interactor for interfacing with my data. 
+
+This interactor is injected with an API interface which contains all of my Retrofit RESTfull methods to make calls to the moneybox API. Retrofit will serialise the returned JSON to an object using GSON, and the reverse is carried out for making a payment in the Accounts screen.
 
 The Activity module provided by my activity component simply provides the activity presenter and context. In this scope the only operations required involve fragment logic
 
 The Fragment module provided by the fragmet subcomponent allows me to injects a presenter for each fragment which inherits the App components and its singletons. This ensures the fragments will receive their dependencies at creation and can carry out the required functionality in the correct scopes and with the neccesserry instance lifetimes.
 
+### REST + RX
+
 My RESTful network calls return SingleObservables, this pipeline is async in nature with the call being carried out on a background thread (observed on Schedulers.io io thread) and subscribed on the main thread: (the only thread that can update the ui). 
 
 I have created one callback interface for making a payment (Compleatable) and one callback for updating user data (Single) this allowed me to conform the behaviour of consumtion of the data to my requirements.
+
 The data is returned in a disposable, which is consumed by said callback which implements the matching interface (DisposableSingleObserver<Login_>()/DisposableCompletableObserver()).
+
+### Persistence
 
 For updating user data i am copying the de-serialised objects to realm on the mainthread,so that i can access and update the view from this managed object (Realm only allows creation and access from the same thread).
 
 To update the profile with user data after it is available in realm i have implemented a realm listener in the mainActivity
-which when triggered will activate and display the profile fragment. This profile fragment will onAttach retrieve the users data from realm and update the view. Deregistering the listener when its done to prevent unwanted behaviour. This prevents null pointers in my app and is a reactive design which only will show the profile and update the data when it becomes availabe.
+which when triggered will activate and display the profile fragment. This profile fragment will onAttach retrieve the users data from realm and update the view. 
+
+Deregistering the listener when its done to prevent unwanted behaviour. This prevents null pointers in my app and is a reactive design which only will show the profile and update the data when it becomes availabe.
 
 
 ### Screen 1 - Login screen
@@ -101,7 +118,6 @@ Solution:
     fun Login(@Body login: Login): Single<UserToken>
  
  
-
 
 #### Investor Products
 Provides product and account information for a user that will be needed for the two additional screens.
